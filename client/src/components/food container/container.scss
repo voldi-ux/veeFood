@@ -49,7 +49,7 @@
       cursor: pointer;
       &.red {
         color: rgb(235, 16, 16);
-        animation:scale3 1s linear forwards;
+        animation: scale3 1s linear forwards;
       }
     }
   }
@@ -76,18 +76,21 @@
       padding: 1rem 2rem;
       width: 100%;
       font-size: 1.7rem;
+      &:hover {
+        opacity: 0.8;
+      }
     }
   }
 }
 
 @keyframes scale3 {
   0% {
-    transform: scale(.9)
+    transform: scale(0.9);
   }
   50% {
-    transform: scale(1.5) rotate(360deg)
+    transform: scale(1.5) rotate(360deg);
   }
   100% {
-    transform: scale(1) rotate(360deg)
+    transform: scale(1) rotate(360deg);
   }
 }

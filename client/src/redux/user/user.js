@@ -1,7 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  user: {},
+  user: null,
+  orders:[] 
 };
 
 export const userSlice = createSlice({
@@ -15,15 +16,17 @@ export const userSlice = createSlice({
     logout: (state, action) => {
       // logout the user
     },
-    addOrder: (state, action) => {
-      // add orders to the dashboard
-    },
-    removeOrder: (state, action) => {
-       //remove the completed orders from the dashboard
-    },
+ 
   },
 });
 
-export const { login,logout,addOrder, removeOrder } = userSlice.actions;
+//the login thunk
+//this function should be dispatched like the normal action creator functions
+// const login = async (user)=> (dispatch) => {
+   
+// }
 
+
+export const { login,logout,addOrder, removeOrder } = userSlice.actions;
+export const getUser = (state) => state.user.user
 export default userSlice.reducer;

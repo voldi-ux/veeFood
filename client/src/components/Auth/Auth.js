@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Auth.scss";
 import Logo from "../../assets/logo/logo.png";
 import MainButton from "../button/button";
-import {login} from '../../redux/user/user'
-import {useDispatch} from 'react-redux'
+import { getUser, login } from "../../redux/user/user";
+import { useDispatch, useSelector } from "react-redux";
 const URI = "http://localhost:4000";
 
 const Auth = ({ type }) => {
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
+  const user = useSelector(getUser);
   const heading = type === "signin" ? "Sign in to VeeEat" : "Sign up with VeeEat";
   const titleBtn = type === "signin" ? "Sign in" : "Sign up";
   const linkHeading = type === "signin" ? "Do not have an account?" : "Already have anccount?";
+
+  useEffect(() => {
+    if (user) {
+      // should uncomment this when data persistent is enabled 
+      // window.location.assign("/");
+    }
+  });
   const logInUser = async () => {
     try {
       const resp = await fetch(`${URI}/signin/?name=voldi`, {
@@ -27,8 +34,8 @@ const Auth = ({ type }) => {
       const data = await resp.json();
       if (data.st === "okay") {
         //return dispatch login user
-        console.log(data.user)
-        return dispatch(login(data.user))
+        console.log(data.user);
+        return dispatch(login(data.user));
       }
       throw Error(data.st);
     } catch (error) {

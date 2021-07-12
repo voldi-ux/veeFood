@@ -19,6 +19,10 @@
   margin: 1rem 0;
   color: rgb(255, 255, 255);
   margin-right: 0.4rem;
+  transition: .3s all;
+  &:hover {
+        opacity: 0.9;
+      }
 
   &.add {
     background: rgb(0, 0, 0);
@@ -33,6 +37,7 @@
 }
 
 .modal-button {
+  transition: .3s all;
   background: rgb(243, 188, 9);
   border: none;
   color: rgb(255, 255, 255);
@@ -40,4 +45,7 @@
   padding: 1rem 2rem;
   width: 100%;
   font-size: 1.7rem;
+  &:hover {
+        opacity: 0.9;
+      }
 }

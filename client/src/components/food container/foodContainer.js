@@ -4,17 +4,19 @@ import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import { useSelector, useDispatch } from "react-redux";
 import { addItemToWishlist, getWishlistItems } from "../../redux/wishlist/wishlist";
 
+const URL_Image = "http://localhost:4000";
+
 //using the price as an id
-const FoodHolder = ({ image, price, product, setFood, setVisible }) => {
+const FoodHolder = ({ image, price, product, setFood, setVisible, _id }) => {
   let itemIsInWishlist;
   const dispatch = useDispatch();
   const wishlistItems = useSelector(getWishlistItems);
-  const toggleToWishlist = ()=> {
-    dispatch(addItemToWishlist(product))
-  }
+  const toggleToWishlist = () => {
+    dispatch(addItemToWishlist(product));
+  };
   for (let i = 0; i < wishlistItems.length; i++) {
-    if (wishlistItems[i].price === price) {
-       (itemIsInWishlist = true);
+    if (wishlistItems[i]._id === _id) {
+      itemIsInWishlist = true;
     }
   }
 
@@ -39,7 +41,7 @@ const FoodHolder = ({ image, price, product, setFood, setVisible }) => {
         )}
       </div>
       <div className="food-holder-body">
-        <img src={image.default} />
+        <img src={`${URL_Image}/images/${image}`} />
       </div>
       <h3 className="food-holder-price">R{price}</h3>
       <div className="food-holder-footer">

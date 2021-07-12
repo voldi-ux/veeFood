@@ -4,6 +4,7 @@ exports.signin = async (req, resp) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email, password });
+    console.log(user)
     if(user) {
       return resp.send({ st: "okay",user });
      }

@@ -6,22 +6,30 @@ import Logo from "../../assets/logo/logo.png";
 import "./navBar.scss";
 import { useHistory } from "react-router";
 import { useSelector } from "react-redux";
+import { getUser } from "../../redux/user/user";
 const MainNav = () => {
   const cartItemsCount = useSelector((state) => state.cart.cartItems.length);
   const history = useHistory();
+  const user = useSelector(getUser);
+  const isLoggedIn = (endpoint) => {
+    if (!user) {
+      return history.push("/authentication/signin");
+    }
+    history.push(`/${endpoint}`);
+  };
   useEffect(() => {
     const cartContainer = document.querySelector(".side-cart-container");
     const cartContent = document.querySelector(".side-cart-content");
-    const nav = document.querySelector(".main-nav");
-    const body = document.querySelector("body");
-
+    // const nav = document.querySelector(".main-nav");
+    // const body = document.querySelector("body");
+  
     const showCart = () => {
       cartContainer.style.transform = "translateX(0%)";
       cartContent.style.transform = "translateX(0%)";
     };
     const cart = document.querySelector(".nav-right");
     cart.addEventListener("click", showCart);
-
+    
     return () => {
       cart.removeEventListener("click", showCart);
     };
@@ -33,11 +41,11 @@ const MainNav = () => {
           <AiFillHome className="icon" />
           <h4>Home</h4>
         </span>
-        <span className="flex a-cl a-center" onClick={() => history.push("/profile")}>
+        <span className="flex a-cl a-center" onClick={() => isLoggedIn("profile")}>
           <RiAccountCircleFill className="icon" />
           <h4>You</h4>
         </span>
-        <span className="flex a-cl a-center" onClick={() => history.push("/wishlist")}>
+        <span className="flex a-cl a-center" onClick={() => isLoggedIn("wishlist")}>
           <AiOutlineHeart className="icon" />
           <h4>Whish list</h4>
         </span>

@@ -1,19 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  data: [],
+  data: {},
 };
 
 export const appDataSlice = createSlice({
   name: "appData",
   initialState,
   reducers: {
-    addItem: (state, action) => {
-      // add item to appData. it should add a new item to the appData else remove if the item is already in the appData
+    addData: (state, action) => {
+      state.data = action.payload
     },
   },
 });
 
-export const { addItem } = appDataSlice.actions;
+export const { addData } = appDataSlice.actions;
 
 export default appDataSlice.reducer;

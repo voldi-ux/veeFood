@@ -9,7 +9,7 @@
     right: 0;
     bottom: 0;
     z-index: 5;
-    background: rgba($color: #000000, $alpha: .8);
+    background: rgba($color: #000000, $alpha: 0.8);
     .total,
     strong {
       font-size: 2rem;
@@ -63,10 +63,24 @@
       user-select: none;
     }
     &-content {
-      flex: 0 0 1;
+      width: calc(100% - 15rem);
+      table {
+        width: 100%;
+        tr {
+          width: 100%;
+          td {
+            &:nth-child(even) {
+              text-align: right;
+            }
+          }
+        }
+      }
+      &-top {
+        width: 100%;
+      }
     }
     h2 {
-      margin: 0 2rem;
+      margin-right: 2rem;
     }
     img {
       width: 15rem;
@@ -98,6 +112,10 @@
   margin: 1rem 0;
   color: rgb(255, 255, 255);
   margin-right: 0.4rem;
+  transition: 0.3s all;
+  &:hover {
+    opacity: 0.8;
+  }
 
   &.add {
     background: rgb(0, 0, 0);
@@ -105,12 +123,12 @@
 
   &.remove {
     // background: rgb(43, 232, 245);
-     border: 2px solid rgb(1, 8, 10);
-    color:rgb(1, 8, 10);
+    border: 2px solid rgb(1, 8, 10);
+    color: rgb(1, 8, 10);
   }
 }
 .empty-png {
-  width:90%;
+  width: 90%;
   margin: auto auto;
   height: 100%;
   display: flex;
@@ -122,15 +140,14 @@
   }
 }
 
-
 @keyframes scale2 {
   0% {
-    transform: scale(.9)
+    transform: scale(0.9);
   }
   50% {
-    transform: scale(1.1)
+    transform: scale(1.1);
   }
   100% {
-    transform: scale(.9)
+    transform: scale(0.9);
   }
 }

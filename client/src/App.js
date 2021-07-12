@@ -8,9 +8,21 @@ import ProfilePage from "./pages/profilePage/profilePage";
 import AboutPage from './pages/AboutPage/AboutPage'
 import SearchPage from "./pages/searchPage/searchPage";
 import AuthPage from "./pages/AuthPage/AuthPage";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { addData } from "./redux/appData/appData";
 
+const URL = "http://localhost:4000";
 
 function App() {
+
+const dispatch = useDispatch()
+  useEffect(async()=> {
+            const resp = await fetch(`${URL}/getData`)
+            const data = await resp.json()
+            dispatch(addData(data))
+  },[])
+
   return (
     <Router>
       <Switch>

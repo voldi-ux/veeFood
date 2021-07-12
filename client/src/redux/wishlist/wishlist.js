@@ -10,9 +10,9 @@ export const WishlistSlice = createSlice({
   reducers: {
     addItemToWishlist: (state, action) => {
       // add item to wishlist. it should add a new item to the wishlist else remove if the item is already in the wishlist
-      const item = state.wishlistItems.find((item) => item.price == action.payload.price);
+      const item = state.wishlistItems.find((item) => item._id == action.payload._id);
       if (item) {
-        (state.wishlistItems = state.wishlistItems.filter((item) => item.price !== action.payload.price));
+        state.wishlistItems = state.wishlistItems.filter((item) => item._id !== action.payload._id);
       } else {
          if(state.wishlistItems.length === 7) {
            state.wishlistItems.shift();
@@ -22,7 +22,7 @@ export const WishlistSlice = createSlice({
        
     },
     removeItemFromWishlist: (state,action) => {
-        state.wishlistItems = state.wishlistItems.filter((item) => item.price !== action.payload);
+        state.wishlistItems = state.wishlistItems.filter((item) => item._id !== action.payload);
       
     }
   },

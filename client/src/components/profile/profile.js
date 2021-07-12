@@ -1,18 +1,31 @@
 //the profile page should have the user's dashboard. it should show the amount of orders the user has, name and surname, money spent, current orders, logout button, last order date and amount. it should have two screens; one for the dashboard and one for the current order.
 
-import React from "react";
+import React,{useEffect} from "react";
 import "./profile.scss";
 import {
   AiOutlineMail,
   AiOutlineDollar,
   AiTwotoneWallet,
 } from "react-icons/ai";
-import { FaFileInvoiceDollar } from "react-icons/fa";
 import MainButton from "../button/button";
 import { Spinner } from "react-bootstrap";
 import moment from 'moment'
 import {profileImg} from '../../data'
+import {useSelector} from 'react-redux'
+import { getUser } from "../../redux/user/user";
+
 const Profile = () => {
+  const user = useSelector(getUser)
+
+  useEffect(()=> {
+    if(!user) {
+       window.location.assign('/')
+    }
+  })
+
+   if (!user) {
+      return window.location.assign("/");
+   }
   return (
     <div className="profile">
       <div className="profile-main">
@@ -23,8 +36,8 @@ const Profile = () => {
           />
           <div className="profile-content-details">
             {/* name and surname should go here */}
-            <h1>Voldi</h1>
-            <h1>Muyumba</h1>
+            <h1>{user.name}</h1>
+            <h1>{user.surname}</h1>
           </div>
         </div>
         <div className="profile-details">
@@ -33,7 +46,7 @@ const Profile = () => {
               <AiOutlineMail className="profile-icon" />
               <strong>Email</strong>
             </div>
-            <h1>voldimuyumba57@gmail.com</h1>
+            <h1>{user.email}</h1>
           </div>
 
           <div className="profile-detail">
@@ -41,14 +54,14 @@ const Profile = () => {
               <AiTwotoneWallet className="profile-icon" />
               <strong>Total Orders</strong>
             </div>
-            <h1>6</h1>
+            <h1>{user.totalOrders}</h1>
           </div>
           <div className="profile-detail">
             <div>
               <AiOutlineDollar className="profile-icon" />
               <strong>Total cash spent</strong>
             </div>
-            <h1>R230</h1>
+            <h1>R{user.totalSpent}</h1>
           </div>
           <MainButton style="black" value="Log Out" />
         </div>

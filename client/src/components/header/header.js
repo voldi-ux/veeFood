@@ -38,7 +38,7 @@ const orderBtnClick = (link) => {
         >
           <div>
             <h1>Enjoy healthy and delicious food</h1>
-            <button onClick={() => orderBtnClick("/category/salads")}>
+            <button onClick={() => orderBtnClick("/category/salad")}>
               Order now
             </button>
           </div>
@@ -48,7 +48,7 @@ const orderBtnClick = (link) => {
           style={{ width: "100vw", backgroundImage: `url('${image2}')` }}
         >
           <h1>The Italian Pizza, crafted by the italian people</h1>
-          <button onClick={() => orderBtnClick("/category/pizzas")}>
+          <button onClick={() => orderBtnClick("/category/pizza")}>
             Order now
           </button>
         </div>
@@ -57,7 +57,7 @@ const orderBtnClick = (link) => {
           style={{ width: "100vw", backgroundImage: `url('${image}')` }}
         >
           <h1>It is not just a burger. It is a Ham double burger</h1>
-          <button onClick={() => orderBtnClick("/category/burgers")}>
+          <button onClick={() => orderBtnClick("/category/burger")}>
             Order now
           </button>
         </div>
